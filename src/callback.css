@@ -1,0 +1,170 @@
+/* callback.css
+   Styles for Callback.jsx
+   Clean, responsive, mobile-first
+*/
+
+/* ---------- overlay & panel ---------- */
+.cb-overlay {
+  position: fixed;
+  inset: 0;                       /* top:0; right:0; bottom:0; left:0 */
+  background: rgba(10, 15, 20, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 9999;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cb-panel {
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px 20px 24px;
+  box-shadow: 0 18px 40px rgba(3, 10, 18, 0.18);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---------- close button ---------- */
+.cb-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  color: #374151;
+  padding: 6px;
+  border-radius: 8px;
+}
+.cb-close:hover { background: rgba(15,23,42,0.04); }
+
+/* ---------- headings ---------- */
+.cb-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #07122a;
+  margin: 6px 0 4px;
+}
+
+.cb-sub {
+  font-size: 13px;
+  color: #556077;
+  margin-bottom: 14px;
+}
+
+/* ---------- form layout ---------- */
+.cb-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* label container */
+.cb-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* label text */
+.cb-label-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f1724;
+}
+
+/* ---------- inputs / selects ---------- */
+.cb-input {
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 10px;
+  border: 1px solid #e6eef8;
+  background: #fff;
+  font-size: 14px;
+  color: #0f1724;
+  outline: none;
+  transition: border-color .12s ease, box-shadow .12s ease, transform .06s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.cb-input:focus {
+  border-color: rgba(37,99,235,0.65);
+  box-shadow: 0 8px 26px rgba(37,99,235,0.08);
+}
+
+/* invalid state */
+.cb-invalid {
+  border-color: #f87171 !important;
+  box-shadow: 0 8px 26px rgba(248,113,113,0.06);
+}
+
+/* phone row: country + phone */
+.cb-phone-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* country select */
+.cb-select-country {
+  min-width: 96px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #e6eef8;
+  background: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* phone input flexes */
+.cb-phone-input {
+  flex: 1;
+}
+
+/* simple select style */
+.cb-select {
+  padding-right: 12px; /* leave room for dropdown arrow */
+}
+
+/* ---------- error text ---------- */
+.cb-error {
+  color: #b91c1c;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* ---------- submit ---------- */
+.cb-submit {
+  margin-top: 6px;
+  padding: 12px; /*blue*/
+  color: white;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #1f6feb;
+  font-size: 15px;
+  transition: background .12s ease, transform .06s ease;
+}
+.cb-submit:hover { background-color: #155fcc; }
+.cb-submit:active { transform: translateY(1px); }
+.cb-submit:disabled { opacity: 0.7; cursor: not-allowed; }
+
+/* ---------- responsive adjustments ---------- */
+@media (max-width: 520px) {
+  .cb-panel {
+    padding: 16px;
+    border-radius: 12px;
+  }
+  .cb-title { font-size: 16px; }
+  .cb-sub { font-size: 13px; }
+}
+
+/* ---------- small visual helpers ---------- */
+.cb-panel::-webkit-scrollbar { height: 6px; }

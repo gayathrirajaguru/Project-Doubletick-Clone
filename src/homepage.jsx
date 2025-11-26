@@ -1,10 +1,16 @@
 // src/pages/Homepage.jsx
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
+import Callback from "./callback.jsx";
+import Login from "./getdemo.jsx";
 
 
 export default function Homepage() {
+ const navigate = useNavigate();
   return (
     <div className="homepage">
+      
 
       {/* NAVBAR */}
       <nav className="navbar">
@@ -12,7 +18,12 @@ export default function Homepage() {
           <a href="./homepage"><h1 className="logo">DoubleTickClone</h1></a>
 
           <div className="nav-links">
-           <a href=" " id="btn-primary"><img src="./call.png" alt=""  /></a>
+           <a id="btn-primary"
+              style={{ cursor: "pointer" }}
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/callback");
+              }}><img src="./call.png" alt=""  /></a>
             <a  id="a1"href=" "><img src="./line.png" alt="" /></a>
             
           </div>
@@ -32,9 +43,10 @@ export default function Homepage() {
           </p>
 
           <div className="hero-buttons">
-            <button className="btn-primary1">Get a Demo
+            <button className="btn-primary1"  onClick={() => navigate("/login")}>Get a Demo
             </button>
-            <button className="btn-outline">Sign In</button>
+             <button className="btn-outline" onClick={() => navigate("/login")}>Signin</button>
+            
             <button className="btn-outline">Login</button>
           </div>
         </div>

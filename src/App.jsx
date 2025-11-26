@@ -1,13 +1,15 @@
 // src/App.jsx
 
-import React from "react";
-
-import Homepage from "./homepage";
-
+import { Routes, Route } from "react-router-dom";
+import Homepage from "./homepage.jsx";
+import Callback from "./callback.jsx";
+import Getdemo from "./getdemo.jsx";
 export default function App() {
   return (
-    <div>
-      <Homepage />
-    </div>
+    <Routes>
+      <Route path="/" element={<Homepage />} />
+      <Route path="/callback" element={<Callback />} />
+      <Route path="/login" element={<Getdemo />} />
+    </Routes>
   );
 }

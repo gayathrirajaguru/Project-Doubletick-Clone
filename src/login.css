@@ -1,0 +1,154 @@
+/* signupTheme.css - navy + coral theme */
+:root{
+  --bg:#f6f7fb;
+  --card:#ffffff;
+  --navy:#0b2545;
+  --coral:#ff6b5f;
+  --muted:#6b7280;
+  --soft:#f3f6fb;
+  --err:#ef4444;
+  --shadow: 0 20px 50px rgba(11,37,69,0.06);
+}
+
+* { box-sizing: border-box; }
+html,body,#root { height: 100%; }
+body {
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--bg);
+  color: #0b1720;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* page wrapper */
+.signup-wrap {
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:36px 18px;
+}
+
+/* card */
+.signup-card {
+  width:100%;
+  max-width:820px;
+  background:var(--card);
+  border-radius:12px;
+  box-shadow: var(--shadow);
+  overflow:hidden;
+  border:1px solid rgba(11,37,69,0.04);
+}
+
+/* header */
+.signup-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 22px;
+  background: linear-gradient(90deg, rgba(11,37,69,0.02), rgba(255,255,255,0));
+}
+.brand { display:flex; align-items:center; gap:10px; }
+.logo-mark {
+  width:42px; height:42px; border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(180deg,var(--navy), #052138);
+  color:white; font-weight:700;
+  font-size:16px;
+}
+.brand-name { font-weight:700; color:var(--navy); font-size:18px; letter-spacing:0.2px; }
+.goto-login {
+  background:transparent;
+  border:1px solid rgba(11,37,69,0.06);
+  color:var(--navy);
+  padding:8px 12px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+/* body */
+.signup-body { padding:22px; }
+
+.title { margin:0; color:var(--navy); font-size:22px; font-weight:800; }
+.subtitle { margin:6px 0 18px; color:var(--muted); font-size:13px; }
+
+/* form layout */
+.form { display:flex; flex-direction:column; gap:12px; }
+.grid.two { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+
+/* fields */
+.field { display:flex; flex-direction:column; gap:8px; }
+.lbl { font-size:13px; font-weight:700; color:var(--navy); }
+
+/* inputs and selects */
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+select,
+input {
+  width:100%;
+  padding:10px 12px;
+  border-radius:8px;
+  border:1px solid rgba(11,37,69,0.08);
+  background:var(--soft);
+  outline:none;
+  font-size:14px;
+  color:#071224;
+  transition: box-shadow .18s ease, border-color .18s ease;
+}
+input:focus, select:focus {
+  border-color: rgba(255,107,95,0.38);
+  box-shadow: 0 8px 26px rgba(255,107,95,0.06);
+}
+
+/* phone row */
+.phone-row { display:flex; gap:10px; align-items:center; }
+.phone-row select { width:170px; max-width:40%; border-radius:8px; }
+.phone-row input { flex:1; }
+
+/* checkbox */
+.checkbox-row { display:flex; gap:8px; align-items:center; margin-top:6px; color:var(--muted); font-size:13px; }
+
+/* errors */
+.invalid { border-color: rgba(239,68,68,0.28) !important; box-shadow:0 8px 20px rgba(239,68,68,0.06); }
+.err { color:var(--err); font-size:12px; margin-top:6px; }
+
+/* submit */
+.submit-btn {
+  margin-top:6px;
+  padding:12px 14px;
+  background:linear-gradient(90deg,var(--navy), #052138);
+  color:white;
+  border:none;
+  font-weight:800;
+  border-radius:10px;
+  cursor:pointer;
+  letter-spacing:0.2px;
+  transition: transform .12s ease, opacity .12s ease;
+}
+.submit-btn:hover:not([disabled]) { transform: translateY(-1px); }
+.submit-btn[disabled] { opacity:0.55; cursor:not-allowed; transform:none; }
+
+/* terms */
+.terms { margin-top:10px; color:var(--muted); font-size:12px; }
+
+/* small helper */
+a { color: var(--coral); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* responsive */
+@media (max-width:720px){
+  .grid.two { grid-template-columns:1fr; }
+  .phone-row select { width:130px; }
+  .signup-card { margin: 10px; }
+  .title { font-size:20px; }
+  .logo-mark { width:36px; height:36px; font-size:14px; }
+}
+
+/* optional: subtle focus-visible for accessibility */
+input:focus-visible, select:focus-visible, button:focus-visible {
+  outline: 3px solid rgba(15,118,110,0.08);
+  outline-offset: 2px;
+}
