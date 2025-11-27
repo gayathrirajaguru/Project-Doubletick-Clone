@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 import Callback from "./callback.jsx";
 import Login from "./getdemo.jsx";
+import "./menubar.jsx";
+import "./loginpage.jsx"
+
 
 
 export default function Homepage() {
@@ -15,7 +18,10 @@ export default function Homepage() {
       {/* NAVBAR */}
       <nav className="navbar">
         <div className="nav-container">
-          <a href="./homepage"><h1 className="logo">DoubleTickClone</h1></a>
+          <a href="" onClick={() => { navigate("/"); }}
+            role="button"
+            tabIndex={0}
+            aria-label="Go to home"><h1 className="logo">DoubleTickClone</h1></a>
 
           <div className="nav-links">
            <a id="btn-primary"
@@ -24,7 +30,7 @@ export default function Homepage() {
                 e.preventDefault();
                 navigate("/callback");
               }}><img src="./call.png" alt=""  /></a>
-            <a  id="a1"href=" "><img src="./line.png" alt="" /></a>
+            <a  id="a1"href=" " onClick={() => navigate("/menubar")}><img src="./line.png" alt="" /></a>
             
           </div>
         </div>
@@ -47,7 +53,8 @@ export default function Homepage() {
             </button>
              <button className="btn-outline" onClick={() => navigate("/login")}>Signin</button>
             
-            <button className="btn-outline">Login</button>
+            <button className="btn-outline" 
+              onClick={() => navigate("/loginpage")}>Login</button>
           </div>
         </div>
 

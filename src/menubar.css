@@ -1,0 +1,153 @@
+/* mobileMenuAlt.css — left-drawer, bold buttons layout (different look) */
+
+/* backdrop */
+.mma-backdrop {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 12, 18, 0.48), rgba(6, 12, 18, 0.48));
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  z-index: 9999;
+  padding: 18px;
+}
+
+/* drawer */
+.mma-drawer {
+  width: 86%;
+  max-width: 420px;
+  background: linear-gradient(180deg, #ffffff, #fbfdfe);
+  border-radius: 14px;
+  box-shadow: 0 30px 80px rgba(6,12,18,0.5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateX(0);
+  animation: slideIn 220ms ease;
+}
+
+/* header top */
+.mma-top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px;
+  border-bottom: 1px solid rgba(6,12,18,0.04);
+}
+
+/* brand */
+.mma-brand {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+}
+.mma-logo {
+  width:44px;
+  height:44px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  color:#fff;
+  
+  box-shadow: 0 10px 26px rgba(14,163,124,0.14);
+}
+.mma-logo img {
+  width:40px;
+  height:40px;
+  border-radius:8px;
+  background-color: transparent;
+}
+.mma-title {
+  font-weight:700;
+  color:#0b3030;
+  font-size:18px;
+}
+
+/* actions */
+.mma-actions { display:flex; gap:8px; align-items:center; }
+.mma-callbtn {
+  display:inline-flex;
+  width:44px;
+  height:44px;
+  border-radius:10px;
+  align-items:center;
+  justify-content:center;
+  background: linear-gradient(180deg,#1f6fed,#1158d3);
+  color:white;
+  text-decoration:none;
+  box-shadow:0 8px 24px rgba(14,163,124,0.13);
+}
+.mma-close {
+  background:transparent;
+  border: none;
+  font-size:20px;
+  width:44px;
+  height:44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  cursor:pointer;
+  color:#0b1b1b;
+  border:1px solid rgba(6,12,18,0.04);
+}
+
+/* nav */
+.mma-nav {
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  flex:1;
+}
+.mma-link {
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding:16px 12px;
+  font-size:20px;
+  color:#0b2f2f;
+  border-radius:10px;
+  cursor:pointer;
+  transition: background .12s ease, transform .08s ease;
+}
+.mma-link:hover { background: rgba(6,12,18,0.03); transform: translateX(4px); }
+.mma-link.strong { font-weight:800; font-size:20px; margin-top:6px; }
+
+/* footer area */
+.mma-footer {
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  border-top: 1px solid rgba(6,12,18,0.04);
+}
+.mma-book {
+  width:100%;
+  padding:12px 14px;
+  background: linear-gradient(90deg,#0EA37C,#0A8A6F);
+  color:white;
+  border:none;
+  border-radius:10px;
+  font-weight:800;
+  font-size:16px;
+  cursor:pointer;
+  box-shadow: 0 12px 36px rgba(14,163,124,0.14);
+}
+.mma-play img, .mma-play svg { display:block; width:160px; height:auto; border-radius:8px; }
+
+/* small screens adjustments */
+@media (max-width:420px) {
+  .mma-drawer { width: 94%; }
+  .mma-link { font-size:18px; padding:14px 10px; }
+  .mma-book { padding:12px; font-size:15px; }
+}
+
+/* animation */
+@keyframes slideIn {
+  from { transform: translateX(-10%); opacity:0; }
+  to { transform: translateX(0); opacity:1; }
+}

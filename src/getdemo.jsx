@@ -92,8 +92,11 @@ export default function Getdemo() {       // 👈 UPDATED NAME
       <div className="signup-card">
         <header className="signup-header">
           <div className="brand">
-            <div className="logo-mark"><img src="R4.png" alt="" /></div>
-            <div className="brand-name">DoubleTick</div>
+            <div id="logo-mark"><img src="r4leads.png" alt="" /></div>
+            <div className="brand-name" onClick={() => { navigate("/"); }}
+            role="button"
+            tabIndex={0}
+            aria-label="Go to home">DoubleTickClone</div>
           </div>
           <button className="goto-login" onClick={() => navigate("/login")}>
             Login
