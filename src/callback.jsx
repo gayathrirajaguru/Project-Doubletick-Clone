@@ -1,9 +1,4 @@
 import React, { useState } from "react";
-
-
-
-
-
 /**
  * Callback form component
  * - Simple validation
@@ -302,17 +297,12 @@ export default function Callback({ onSubmit, onClose }) {
 <option value="+63">🇵🇭 Philippines (+63)</option>
 <option value="+48">🇵🇱 Poland (+48)</option>
 <option value="+351">🇵🇹 Portugal (+351)</option>
-
 <option value="+1-787">🇵🇷 Puerto Rico (+1-787)</option>
-
 <option value="+974">🇶🇦 Qatar (+974)</option>
-
 <option value="+262">🇷🇪 Réunion (+262)</option>
-
 <option value="+40">🇷🇴 Romania (+40)</option>
 <option value="+7">🇷🇺 Russia (+7)</option>
 <option value="+250">🇷🇼 Rwanda (+250)</option>
-
 <option value="+685">🇼🇸 Samoa (+685)</option>
 <option value="+378">🇸🇲 San Marino (+378)</option>
 <option value="+239">🇸🇹 Sao Tome & Principe (+239)</option>
@@ -337,7 +327,6 @@ export default function Callback({ onSubmit, onClose }) {
 <option value="+46">🇸🇪 Sweden (+46)</option>
 <option value="+41">🇨🇭 Switzerland (+41)</option>
 <option value="+963">🇸🇾 Syria (+963)</option>
-
 <option value="+886">🇹🇼 Taiwan (+886)</option>
 <option value="+992">🇹🇯 Tajikistan (+992)</option>
 <option value="+255">🇹🇿 Tanzania (+255)</option>
@@ -351,7 +340,6 @@ export default function Callback({ onSubmit, onClose }) {
 <option value="+993">🇹🇲 Turkmenistan (+993)</option>
 <option value="+1-649">🇹🇨 Turks & Caicos Islands (+1-649)</option>
 <option value="+688">🇹🇻 Tuvalu (+688)</option>
-
 <option value="+256">🇺🇬 Uganda (+256)</option>
 <option value="+380">🇺🇦 Ukraine (+380)</option>
 <option value="+971">🇦🇪 United Arab Emirates (+971)</option>
@@ -359,7 +347,6 @@ export default function Callback({ onSubmit, onClose }) {
 <option value="+1">🇺🇸 United States (+1)</option>
 <option value="+598">🇺🇾 Uruguay (+598)</option>
 <option value="+998">🇺🇿 Uzbekistan (+998)</option>
-
 <option value="+678">🇻🇺 Vanuatu (+678)</option>
 <option value="+39-06">🇻🇦 Vatican City (+39-06)</option>
 <option value="+58">🇻🇪 Venezuela (+58)</option>

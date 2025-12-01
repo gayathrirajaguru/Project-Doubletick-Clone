@@ -1,2 +1,184 @@
 /* loginStyles.css - fresh clean teal theme used by Login & VerifyOtp */
 
+/* ===== PAGE WRAPPER ===== */
+.ln-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(180deg, #eef5ff 0%, #f7faff 100%);
+  font-family: "Inter", sans-serif;
+}
+
+/* ===== CARD ===== */
+.ln-card {
+  width: 100%;
+  max-width: 610px;
+  height: 300px;
+  background: #ffffff;
+  padding: 28px 28px 32px;
+  border-radius: 14px;
+  box-shadow: 0 8px 28px rgba(20, 20, 40, 0.12);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== TEXT HEADERS ===== */
+.ln-top {
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.ln-brand {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.ln-sub {
+  font-size: 14px;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* ===== FORM ===== */
+.ln-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label */
+.ln-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #475569;
+  margin-bottom: 6px;
+}
+
+/* Phone Row */
+.ln-phone-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+/* Country select */
+.ln-country {
+  width: 125px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.ln-country:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+/* Phone Input */
+.ln-input {
+  flex: 1;
+  padding: 10px 12px;
+  font-size: 15px;
+  width: 50px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.ln-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+/* ===== ERROR ===== */
+.ln-error {
+  margin-top: 4px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #dc2626;
+  background: #fee2e2;
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+
+/* ===== BUTTON ===== */
+.ln-btn {
+  width: 100%;
+  padding: 12px 0;
+  background: #2563eb;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.2s;
+}
+
+.ln-btn:hover {
+  background: #1e4ed8;
+}
+
+.ln-btn:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
+}
+
+/* ===== OR DIVIDER ===== */
+.ln-or {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  color: #94a3b8;
+}
+
+.ln-or span {
+  flex: 1;
+  height: 1px;
+  background: #e2e8f0;
+}
+
+.ln-or small {
+  padding: 0 10px;
+  font-size: 13px;
+}
+
+/* ===== TERMS ===== */
+.ln-terms {
+  font-size: 12px;
+  text-align: center;
+  color: #64748b;
+  margin-top: 14px;
+}
+
+.ln-terms a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.ln-terms a:hover {
+  text-decoration: underline;
+}
+
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .ln-card {
+    padding: 24px;
+  }
+  .ln-brand {
+    font-size: 24px;
+  }
+}

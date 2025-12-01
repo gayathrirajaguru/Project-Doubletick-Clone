@@ -3,7 +3,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import Callback from "./callback.jsx";
-import Login from "./getdemo.jsx";
+
+import Getdemo from "./getdemo.jsx";
 import "./menubar.jsx";
 import "./loginpage.jsx"
 
@@ -18,10 +19,13 @@ export default function Homepage() {
       {/* NAVBAR */}
       <nav className="navbar">
         <div className="nav-container">
+          <div id="nav">
+            <img src="./r4logo.jpg" alt="" />
           <a href="" onClick={() => { navigate("/"); }}
             role="button"
             tabIndex={0}
             aria-label="Go to home"><h1 className="logo">DoubleTickClone</h1></a>
+          </div>
 
           <div className="nav-links">
            <a id="btn-primary"

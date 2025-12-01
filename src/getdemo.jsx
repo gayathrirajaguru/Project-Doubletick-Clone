@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
  // your theme file
 
 export default function Getdemo() {       // 👈 UPDATED NAME
@@ -76,7 +77,7 @@ export default function Getdemo() {       // 👈 UPDATED NAME
       console.log("Signup payload:", payload);
       await new Promise((r) => setTimeout(r, 800));
 
-      navigate("/dashboard"); // 👈 redirect after success
+      navigate("/loginpage"); // 👈 redirect after success
     } catch (err) {
       console.error(err);
       alert("Submission failed. Try again.");
@@ -200,7 +201,7 @@ export default function Getdemo() {       // 👈 UPDATED NAME
               <span className="lbl">WhatsApp Number</span>
               <div className="phone-row">
                 <select name="country" value={form.country} onChange={handleChange}>
-                  <option value="+93">🇦🇫 Afghanistan (+93)</option>
+<option value="+93">🇦🇫 Afghanistan (+93)</option>
 <option value="+355">🇦🇱 Albania (+355)</option>
 <option value="+213">🇩🇿 Algeria (+213)</option>
 <option value="+1-684">🇦🇸 American Samoa (+1-684)</option>
