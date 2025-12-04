@@ -1,123 +1,78 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { postJson } from "./api/client";
 
-
-/**
- * VerifyOtp: accepts requestId + phone from location.state
- * - Replace simulateVerifyOtp() with server verification call.
- */
 export default function VerifyOtp() {
-  const navigate = useNavigate();
   const location = useLocation();
-  const { requestId, phone, demoOtp } = location.state || {};
+  const navigate = useNavigate();
+  const phone = location.state?.phone; // from loginpage navigate
+
   const [otp, setOtp] = useState("");
-  const [error, setError] = useState("");
-  const [resendLoading, setResendLoading] = useState(false);
-  const [verifyLoading, setVerifyLoading] = useState(false);
-  const [seconds, setSeconds] = useState(30);
+  const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    // redirect back to login if no requestId
-    if (!requestId) navigate("/login");
-  }, [requestId, navigate]);
-
-  useEffect(() => {
-    // countdown timer for resend
-    if (seconds <= 0) return;
-    const t = setTimeout(() => setSeconds((s) => s - 1), 1000);
-    return () => clearTimeout(t);
-  }, [seconds]);
-
-  async function simulateVerifyOtp(submittedOtp) {
-    await new Promise((r) => setTimeout(r, 600));
-    // demo: accept demoOtp or "1234"
-    return { success: submittedOtp === demoOtp || submittedOtp === "1234" };
+  if (!phone) {
+    // User opened /verify-otp directly without login
+    return (
+      <div style={{ padding: 20 }}>
+        <p>No phone number found. Please login again.</p>
+        <button onClick={() => navigate("/loginpage")}>Go to Login</button>
+      </div>
+    );
   }
 
-  async function handleVerify(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    setError("");
-    if (!/^\d{3,8}$/.test(otp)) {
-      setError("Enter a valid OTP");
+    setStatus("");
+
+    if (!otp.trim()) {
+      setStatus("Enter OTP");
       return;
     }
-    setVerifyLoading(true);
-    try {
-      const res = await simulateVerifyOtp(otp.trim());
-      if (res && res.success) {
-        // on success navigate to dashboard
-        navigate("/dashboard", { state: { phone } });
-      } else {
-        setError("Invalid OTP. Try again.");
-      }
-    } catch {
-      setError("Verification failed. Try again.");
-    } finally {
-      setVerifyLoading(false);
-    }
-  }
 
-  async function handleResend() {
-    setResendLoading(true);
-    setError("");
-    // simulate resend — in production call resend API
-    await new Promise((r) => setTimeout(r, 800));
-    setSeconds(30);
-    setResendLoading(false);
-    alert("OTP resent (demo). Use 1234 as test OTP.");
+    setLoading(true);
+    try {
+      // ✅ Call backend: /api/auth/login/verify-otp
+      const res = await postJson("/auth/login/verify-otp", {
+        phone,
+        otp: otp.trim(),
+      });
+
+      if (res.success) {
+        // Save token so ProtectedRoute works
+        if (res.token) {
+          localStorage.setItem("token", res.token);
+        }
+        setStatus("Login successful! Redirecting…");
+        navigate("/dashboard");
+      } else {
+        setStatus(res.message || "Invalid OTP");
+      }
+    } catch (err) {
+      console.error("Verify OTP error:", err);
+      setStatus(err.message || "Verification failed. Try again.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
-    <div className="ln-page">
-      <div className="ln-card ln-small">
-        <div className="ln-top">
-          <div className="ln-brand">DoubleTick</div>
-          <div className="ln-sub">Enter the OTP we sent to</div>
-          <div className="ln-phone-display">{phone || "—"}</div>
-        </div>
+    <div className="otp-page">
+      <h2>Verify OTP</h2>
+      <p>OTP sent to: {phone}</p>
 
-        <form className="ln-form" onSubmit={handleVerify}>
-          <label className="ln-label">Enter OTP</label>
+      <form onSubmit={handleSubmit}>
+        <input
+          value={otp}
+          onChange={(e) => setOtp(e.target.value)}
+          placeholder="Enter OTP"
+        />
+        <button type="submit" disabled={loading}>
+          {loading ? "Verifying…" : "Verify & Continue"}
+        </button>
+      </form>
 
-          <input
-            className="ln-input ln-otp"
-            placeholder="1234"
-            value={otp}
-            onChange={(e) => setOtp(e.target.value.replace(/[^\d]/g, ""))}
-            inputMode="numeric"
-            maxLength={8}
-          />
-
-          {error && <div className="ln-error">{error}</div>}
-
-          <button className="ln-btn" type="submit" disabled={verifyLoading}>
-            {verifyLoading ? "Verifying…" : "Verify & Sign in"}
-          </button>
-
-          <div className="ln-resend-row">
-            <button
-              type="button"
-              className="ln-resend"
-              onClick={handleResend}
-              disabled={resendLoading || seconds > 0}
-            >
-              {resendLoading ? "Resending…" : seconds > 0 ? `Resend in ${seconds}s` : "Resend OTP"}
-            </button>
-
-            <button
-              type="button"
-              className="ln-edit"
-              onClick={() => navigate("/login")}
-            >
-              Edit number
-            </button>
-          </div>
-
-          <p className="ln-terms small">
-            By signing in you agree to our <a href="#">terms</a>.
-          </p>
-        </form>
-      </div>
+      {status && <p>{status}</p>}
     </div>
   );
 }

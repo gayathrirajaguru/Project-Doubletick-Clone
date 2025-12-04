@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./loginpage.css";
+import { postJson } from "./api/client";
 
 /**
  * Login: collect phone number and "send OTP"
@@ -17,38 +18,40 @@ export default function Login() {
     return /^[0-9]{6,15}$/.test(p.replace(/\s+/g, ""));
   }
 
-  async function simulateSendOtp(fullNumber) {
-    // simulate API latency & return a fake requestId / otp for demo
-    await new Promise((r) => setTimeout(r, 700));
-    // In production you should call your API and return a request id or token
-    return { success: true, requestId: "req_" + Math.random().toString(36).slice(2, 9), otp: "1234" };
+  async function sendOtp(fullNumber) {
+  return await postJson("/auth/login/send-otp", { phone: fullNumber });
+}
+
+ async function handleSubmit(e) {
+  e.preventDefault();
+  setError("");
+
+  if (!validPhone(phone)) {
+    setError("Enter a valid phone number (10 digits)");
+    return;
   }
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    setError("");
-    if (!validPhone(phone)) {
-      setError("Enter a valid phone number (10 digits)");
-      return;
-    }
+  const fullNumber = `${country}${phone.trim()}`; // e.g. +917010071434
+  setLoading(true);
 
-    const fullNumber = `${country}${phone.trim()}`;
-    setLoading(true);
+  try {
+    // ✅ Call backend: /api/auth/login/send-otp
+    const res = await postJson("/auth/login/send-otp", { phone: fullNumber });
 
-    try {
-      const res = await simulateSendOtp(fullNumber);
-      if (res && res.success) {
-        // send requestId (or server token) to otp page
-        navigate("/verify-otp", { state: { requestId: res.requestId, phone: fullNumber, demoOtp: res.otp } });
-      } else {
-        setError("Failed to send OTP. Try again.");
-      }
-    } catch (err) {
-      setError("Network error. Try again.");
-    } finally {
-      setLoading(false);
+    if (res.success) {
+      // Go to OTP screen, pass phone
+      navigate("/verify-otp", { state: { phone: fullNumber } });
+    } else {
+      setError(res.message || "Failed to send OTP. Try again.");
     }
+  } catch (err) {
+    console.error("Send OTP error:", err);
+    setError(err.message || "Network error. Try again.");
+  } finally {
+    setLoading(false);
   }
+}
+
 
   return (
     <div className="ln-page">

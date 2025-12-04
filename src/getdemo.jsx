@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { postJson } from "./api/client";
 
  // your theme file
 
@@ -47,44 +48,43 @@ export default function Getdemo() {       // 👈 UPDATED NAME
     if (!validPhone(form.phone)) return false;
     return true;
   }
+async function handleSubmit(e) {
+  e.preventDefault();
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    if (!isValid()) {
-      setTouched({
-        firstName: true,
-        lastName: true,
-        org: true,
-        designation: true,
-        website: true,
-        phone: true,
-      });
-      return;
-    }
-
-    setSubmitting(true);
-
-    const payload = {
-      firstName: form.firstName.trim(),
-      lastName: form.lastName.trim(),
-      org: form.org.trim(),
-      designation: form.designation.trim(),
-      website: form.noWebsite ? "" : form.website.trim(),
-      phone: `${form.country}${form.phone.trim()}`,
-    };
-
-    try {
-      console.log("Signup payload:", payload);
-      await new Promise((r) => setTimeout(r, 800));
-
-      navigate("/loginpage"); // 👈 redirect after success
-    } catch (err) {
-      console.error(err);
-      alert("Submission failed. Try again.");
-    } finally {
-      setSubmitting(false);
-    }
+  if (!isValid()) {
+    setTouched({
+      firstName: true,
+      lastName: true,
+      org: true,
+      designation: true,
+      website: true,
+      phone: true,
+    });
+    return;
   }
+
+  setSubmitting(true);
+
+  const payload = {
+    firstName: form.firstName.trim(),
+    lastName: form.lastName.trim(),
+    org: form.org.trim(),
+    designation: form.designation.trim(),
+    website: form.noWebsite ? "" : form.website.trim(),
+    phone: `${form.country}${form.phone.trim()}`,
+  };
+
+  try {
+    await postJson("/auth/signup", payload);
+    navigate("/loginpage");
+  } catch (err) {
+    console.error("Signup error:", err);
+    alert(err.message || "Signup failed. Try again.");
+  } finally {
+    setSubmitting(false);
+  }
+}
+
 
   const disabled = !isValid() || submitting;
 
